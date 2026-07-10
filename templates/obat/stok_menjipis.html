@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Stok Obat Menjipis - Klinik Hewan{% endblock %}
+{% block title %}Stok Obat Menipis - Klinik Hewan{% endblock %}
 
 {% block content %}
 <div class="container-fluid mt-4">
     <div class="row mb-4">
         <div class="col-md-8">
-            <h1><i class="fas fa-pills"></i> Stok Obat Menjipis</h1>
+            <h1><i class="fas fa-pills"></i> Stok Obat Menipis</h1>
             <p class="text-muted">Monitor obat dengan stok yang hampir habis</p>
         </div>
         <div class="col-md-4 text-end">
@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Status KRITIS</h5>
                     <p class="card-text fs-4">
-                        {% set kritis = obat_menjipis|selectattr('status', 'equalto', 'KRITIS')|list %}
+                        {% set kritis = obat_menipis|selectattr('status', 'equalto', 'KRITIS')|list %}
                         {{ kritis|length }}
                     </p>
                     <small>Stok habis atau sangat sedikit</small>
@@ -33,10 +33,10 @@
         <div class="col-md-4">
             <div class="card bg-warning text-white">
                 <div class="card-body">
-                    <h5 class="card-title">Status MENJIPIS</h5>
+                    <h5 class="card-title">Status MENIPIS</h5>
                     <p class="card-text fs-4">
-                        {% set menjipis = obat_menjipis|selectattr('status', 'equalto', 'MENJIPIS')|list %}
-                        {{ menjipis|length }}
+                        {% set menipis = obat_menipis|selectattr('status', 'equalto', 'MENIPIS')|list %}
+                        {{ menipis|length }}
                     </p>
                     <small>Stok mendekati minimum</small>
                 </div>
@@ -46,7 +46,7 @@
             <div class="card bg-info text-white">
                 <div class="card-body">
                     <h5 class="card-title">Total Alert</h5>
-                    <p class="card-text fs-4">{{ obat_menjipis|length }}</p>
+                    <p class="card-text fs-4">{{ obat_menipis|length }}</p>
                     <small>Semua obat dengan stok rendah</small>
                 </div>
             </div>
@@ -70,9 +70,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% if obat_menjipis %}
-                        {% for idx, obat in obat_menjipis|list|enumerate(1) %}
-                        <tr class="{% if obat.status == 'KRITIS' %}table-danger{% elif obat.status == 'MENJIPIS' %}table-warning{% endif %}">
+                    {% if obat_menipis %}
+                        {% for idx, obat in obat_menipis|list|enumerate(1) %}
+                        <tr class="{% if obat.status == 'KRITIS' %}table-danger{% elif obat.status == 'MENIPIS' %}table-warning{% endif %}">
                             <td><strong>{{ idx }}</strong></td>
                             <td>
                                 <strong>{{ obat.nama_obat }}</strong>
@@ -93,9 +93,9 @@
                                     <span class="badge bg-danger">
                                         <i class="fas fa-exclamation-circle"></i> KRITIS
                                     </span>
-                                {% elif obat.status == 'MENJIPIS' %}
+                                {% elif obat.status == 'MENIPIS' %}
                                     <span class="badge bg-warning">
-                                        <i class="fas fa-exclamation-triangle"></i> MENJIPIS
+                                        <i class="fas fa-exclamation-triangle"></i> menipis
                                     </span>
                                 {% else %}
                                     <span class="badge bg-success">OK</span>
@@ -128,7 +128,7 @@
         <h5><i class="fas fa-info-circle"></i> Keterangan Status</h5>
         <ul class="mb-0">
             <li><strong style="color: #dc3545;">KRITIS:</strong> Stok obat habis atau ≤ stok minimum. Segera lakukan pemesanan ulang.</li>
-            <li><strong style="color: #ffc107;">MENJIPIS:</strong> Stok obat mendekati minimum (≤ 1.5x stok minimum). Persiapkan pemesanan.</li>
+            <li><strong style="color: #ffc107;">menipis:</strong> Stok obat mendekati minimum (≤ 1.5x stok minimum). Persiapkan pemesanan.</li>
             <li><strong style="color: #28a745;">OK:</strong> Stok obat dalam kondisi aman.</li>
         </ul>
     </div>
