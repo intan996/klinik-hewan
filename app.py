@@ -296,8 +296,8 @@ def index():
         )
     ).count()
     
-    # Obat dengan stok menjipis
-    obat_menjipis = db.session.query(func.count(StokObat.id_stok)).filter(
+    # Obat dengan stok menipis
+    obat_menipis = db.session.query(func.count(StokObat.id_stok)).filter(
         StokObat.jumlah_stok <= StokObat.stok_minimum * 1.5
     ).scalar()
     
@@ -308,7 +308,7 @@ def index():
                          total_pendapatan=float(total_pendapatan),
                          kunjungan_hari_ini=kunjungan_hari_ini,
                          vaksinasi_jatuh_tempo=vaksinasi_jatuh_tempo,
-                         obat_menjipis=obat_menjipis)
+                         obat_menipis=obat_menipis)
 
 # ============================================================================
 # ROUTES - PEMILIK HEWAN (CRUD)
@@ -549,16 +549,16 @@ def list_obat():
     obat = JenisObat.query.all()
     return render_template('obat/list.html', obat=obat)
 
-@app.route('/obat/stok-menjipis', methods=['GET'])
-def stok_menjipis():
-    """Obat dengan stok menjipis"""
-    obat_menjipis = db.session.query(JenisObat, StokObat).join(
+@app.route('/obat/stok-menipis', methods=['GET'])
+def stok_menipis():
+    """Obat dengan stok menipis"""
+    obat_menipis = db.session.query(JenisObat, StokObat).join(
         StokObat, JenisObat.id_obat == StokObat.id_obat
     ).filter(
         StokObat.jumlah_stok <= StokObat.stok_minimum * 1.5
     ).all()
     
-    return render_template('obat/stok_menjipis.html', obat_menjipis=obat_menjipis)
+    return render_template('obat/stok_menipis.html', obat_menipis=obat_menipis)
 
 # ============================================================================
 # ROUTES - VAKSINASI
