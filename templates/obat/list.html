@@ -13,8 +13,8 @@
             </h3>
         </div>
         <div class="col-md-4 text-end">
-            <a href="{{ url_for('stok_menjipis') }}" class="btn btn-warning">
-                <i class="fas fa-exclamation-triangle"></i> Stok Menjipis
+            <a href="{{ url_for('stok_menipis') }}" class="btn btn-warning">
+                <i class="fas fa-exclamation-triangle"></i> Stok menipis
             </a>
         </div>
     </div>
@@ -73,7 +73,7 @@
                                         {% if item.stok.jumlah_stok <= item.stok.stok_minimum %}
                                             <span class="badge bg-danger">KRITIS</span>
                                         {% elif item.stok.jumlah_stok <= item.stok.stok_minimum * 1.5 %}
-                                            <span class="badge bg-warning">MENJIPIS</span>
+                                            <span class="badge bg-warning">menipis</span>
                                         {% else %}
                                             <span class="badge bg-success">NORMAL</span>
                                         {% endif %}
@@ -103,7 +103,7 @@
                 <i class="fas fa-info-circle"></i> 
                 <strong>Keterangan Status Stok:</strong>
                 <span class="badge bg-danger">KRITIS</span> = Stok ≤ minimum | 
-                <span class="badge bg-warning">MENJIPIS</span> = Stok ≤ minimum × 1,5 | 
+                <span class="badge bg-warning">menipis</span> = Stok ≤ minimum × 1,5 | 
                 <span class="badge bg-success">NORMAL</span> = Stok OK
             </small>
         </div>
