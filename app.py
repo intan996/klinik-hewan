@@ -27,7 +27,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-12345')
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if not DATABASE_URL:
     # Default untuk development (LOCAL PostgreSQL)
-    DATABASE_URL = postgresql://neondb_owner:npg_VSmjD39JwTIB@ep-autumn-bar-aoqz9q4u-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+    DATABASE_URL = 'postgresql://postgres:password@localhost:5432/klinik_hewan'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
